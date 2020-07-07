@@ -1,0 +1,630 @@
+<!--
+     Theme: Flashback to Simplicity
+     Updated: 15 Jan 2014
+     Design: Drevlyanin (https://www.drevlyanin.ru)
+-->
+
+<html lang="{text:Language Code}">
+<head>
+    <title>{block:PostTitle}{PostTitle} — {/block:PostTitle}{Title}</title>
+    <meta https-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="title" content="{block:PostTitle}{PostTitle} — {/block:PostTitle}{Title}" />
+    
+    <!-- DEFAULT COLORS -->
+    <meta name="color:Background" content="#FFFFFF"/>
+    <meta name="color:Text" content="#000000"/>
+    <meta name="color:Text Highlighting" content="#DDEEAA"/>
+    <meta name="color:Link" content="#0000EE"/>
+    <meta name="color:Quoting" content="#500050"/>
+
+    <!-- DEFAULT TEXT -->
+    <meta name="text:Maximum number of tags" content="100"/>
+    <meta name="text:Footer text" content="Keep it simple."/>
+
+    <!-- DEFAULT BOOLEANS -->
+    <meta name="if:Center alignment" content="1"/>
+    <meta name="if:Show blog tags" content="1"/>
+    <meta name="if:Show description" content="1"/>
+    <meta name="if:Show infinity symbol before link title" content="1"/>
+
+    <meta name='text:Language Code' content='ru' />
+    <!-- https://www.google.ru/cse -->
+    <meta name='text:Google Search CX ID' content='' />
+    <meta name='text:Cackle ID' content='' />
+
+    <link rel="shortcut icon" href="{Favicon}">
+    <link rel="alternate" type="application/rss+xml" href="{RSS}">
+    <link rel="canonical" href="{Permalink}" />
+
+    {block:Description}<meta name="description" content="{MetaDescription}"/>{/block:Description}
+
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    {block:IfGoogleSearchCxId}
+    <script>
+      (function() {
+        var cx = '{text:Google Search CX ID}';
+        var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'https:') +
+            '//www.google.ru/cse/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+    {/block:IfGoogleSearchCxId}
+
+    <style type="text/css">
+        @font-face {
+            font-family: 'PTMonoRegular';
+            src: url('https://static.tumblr.com/ewvtvf7/voDm0s6ui/ptm55f_w.eot');
+            src: local('PT Mono'), local('PTMonoRegular'),
+            url('https://static.tumblr.com/ewvtvf7/voDm0s6ui/ptm55f_w.eot?#iefix') format('embedded-opentype'),
+            url('https://static.tumblr.com/ewvtvf7/TEVm0s6w0/ptm55f_w.woff') format('woff'),
+            url('https://static.tumblr.com/ewvtvf7/1Xpm0s6vm/ptm55f_w.ttf') format('truetype'),
+            url('https://static.tumblr.com/ewvtvf7/Romm0s6v5/ptm55f_w.svg#PTMono-Regular') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+
+        *, html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'PTMonoRegular', 'Lucida Console', Monaco, monospace;
+            font-size: 14px; /* 8px x 14px (16px) */
+            line-height: 16px;
+        }
+
+        body {
+            margin-bottom: 16px;
+            padding: 0 8px;
+            color: {color:Text};
+            background-color: {color:Background};
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-weight: normal;
+        }
+
+        h1,
+        h2 {
+            text-transform: uppercase;
+        }
+
+        h3 {
+            text-decoration: underline;
+        }
+
+        a {
+            color: {color:Link};
+        }
+        a:hover,
+        #mc-link:hover {
+            background-color: {color:Link};
+            color: {color:Background}!important;
+        }
+        a img {
+            border: none;
+        }
+
+        strong,
+        b {
+            font-weight: normal;
+            background-color: {color:Text Highlighting};
+        }
+        
+        pre {
+            overflow-x: auto;
+            margin-bottom: 16px;
+        }
+
+        pre, code {
+            outline: 1px dotted black;
+        }
+
+        pre code {
+            outline: none;
+        }
+
+        nav ul li {
+            display: inline;
+            list-style: none;
+        }
+
+        /* Google Search */
+
+        .google-search {
+          padding-top: 32px;
+          background: url("https://static.tumblr.com/7nef5wt/jl3qcywoh/back.png") repeat-x left top;
+          min-height: 32px;
+        }
+
+        .google-search .gsc-control-cse {
+          padding: 0 !important;
+          border: none !important;
+        }
+
+        .google-search .gsc-search-box {
+          margin: 0 !important;
+        }
+
+        .google-search .gsc-wrapper {
+          padding-bottom: 0 !important;
+        }
+
+        .google-search .gsc-cursor-box {
+          margin-bottom: 0 !important;
+        }
+
+        .google-search .gsc-result-info,
+        .google-search .gsc-thumbnail-inside,
+        .google-search .gsc-url-top,
+        .google-search .gsc-table-result,
+        .google-search .gsc-cursor-box {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+
+        .google-search .gsc-results {
+          padding-bottom: 0 !important;
+          width: 100% !important;
+        }
+
+        .google-search .gs-snippet {
+          margin: 0 !important;
+        }
+
+        .google-search .gcsc-branding {
+          padding-right: 0 !important;
+        }
+
+        .google-search .gsib_a {
+          padding-right: 4px !important;
+          padding-left: 4px !important;
+        }
+
+        .google-search .gsib_a,
+        .google-search .gsib_b {
+          vertical-align: bottom !important;
+        }
+
+        .google-search .gsst_a {
+          height: 16px !important;
+        }
+
+        .blog-tags {
+          padding-top: 32px !important;
+          background: url("https://static.tumblr.com/7nef5wt/jl3qcywoh/back.png") repeat-x left top !important;
+        }
+
+        header,
+        nav,
+        article {
+            width: 640px; /* 8px * 80px */
+            margin-top: 16px;
+            padding-bottom: 16px;
+            background: url("https://static.tumblr.com/7nef5wt/jl3qcywoh/back.png") repeat-x left bottom;
+        }
+
+        .mc-container {
+            width: 640px; /* 8px * 80px */
+            padding-top: 32px;
+            padding-bottom: 16px;
+            background: url("https://static.tumblr.com/7nef5wt/jl3qcywoh/back.png") repeat-x left top !important;
+        }
+
+        header h1 {
+            display: inline-block;
+            padding-bottom: 16px;
+            background: url("https://static.tumblr.com/7nef5wt/jl3qcywoh/back.png") repeat-x left bottom;
+        }
+        header h1 a {
+            text-decoration: none;
+        }
+        header details summary::-webkit-details-marker {
+            display:none;
+        }
+        header details summary span {
+            cursor: pointer;
+            text-transform: uppercase;
+            text-decoration: underline;
+            color: {color:Link};
+        }
+        header details summary span:hover {
+            background-color: {color:Link};
+            color: {color:Background};
+        }
+        header details .description {
+            margin-top: 16px;
+            min-height: 128px;
+        }
+        header details .description img {
+            float: left;
+            margin-right: 8px;
+        }
+        header nav {
+            margin-top: 0;
+            padding-bottom: 0;
+            background: none;
+        }
+        header nav form {
+            display: inline;
+        }
+        header .blog-tags div,
+        header .blog-tags ul {
+            display: inline;
+        }
+
+        header h1,
+        header details,
+        header nav,
+        nav ul,
+        article h1,
+        article h2,
+        article h3,
+        article p,
+        article img,
+        article ul,
+        article ol,
+        article .img,
+        article blockquote,
+        article .src,
+        footer {
+            margin-bottom: 16px;
+        }
+
+        article p img,
+        article .img img {
+            display: block;
+            margin-bottom: 0;
+        }
+        article .src object,
+        article .src embed {
+            display: block;
+        }
+        article ul {
+            margin-left: 16px;
+            list-style: none url("https://static.tumblr.com/ewvtvf7/zf5m0tq58/star-8x14.png");
+        }
+        article ol {
+            margin-left: 24px;
+            list-style-image: none;
+        }
+        article blockquote {
+            display: block;
+            margin-left: 0;
+            padding-left: 6px;
+            border-left: 2px solid {color:Quoting};
+            color: {color:Quoting};
+        }
+        article.quote p.source {
+            text-align: right;
+        }
+        article.chat ul,
+        article.answer ul {
+            margin-left: 0;
+        }
+        article.chat li,
+        article.answer li {
+            margin-left: 16px;
+            list-style: none;
+            text-indent: -16px;
+        }
+        article.answer li p {
+            display: inline;
+        }
+
+        article .post-footer {
+          filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+          -moz-opacity: 0.5;
+          -khtml-opacity: 0.5;
+          opacity: 0.5;
+        }
+
+        article .post-footer:hover {
+          filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+          -moz-opacity: 1.0;
+          -khtml-opacity: 1.0;
+          opacity: 1.0;
+        }
+
+        ul.tags {
+            display: inline;
+            margin-left: 0;
+            margin-bottom: 0;
+        }
+        ul.tags li {
+            display: inline;
+            margin-left: 0;
+            list-style: none;
+            text-indent: 0;
+        }
+
+        .google-plus-one {
+          display: inline-block;
+          vertical-align: middle;
+          height: 19px;
+        }
+
+        footer {
+            margin-top: 16px;
+        }
+
+        /* Modifiers */
+
+        .permalink-page header,
+        .permalink-page article {
+            background: none;
+            padding-bottom: 0;
+        }
+        .permalink-page header h1 {
+            margin-bottom: 0;
+        }
+        .permalink-page footer {
+            display: none;
+        }
+
+        .notes-block {
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+        .notes-block ol.notes {
+            margin-left: 0;
+            list-style-type: none;
+        }
+        .notes-block li.note {
+            list-style-type: none;
+        }
+        .notes-block a,
+        .notes-block img,
+        .notes-block span {
+            vertical-align: bottom;
+        }
+        .notes-block img {
+            margin-bottom: 0;
+        }
+        .notes-block blockquote {
+            margin-left: 24px;
+            margin-bottom: 0;
+        }
+        .notes-block blockquote a {
+            text-decoration: none;
+            color: {color:Quoting};
+        }
+        .notes-block blockquote a:hover {
+            color: {color:Background};
+        }
+        .notes-block .more_notes_link_container {
+            text-align: left;
+            margin-top: 16px;
+        }
+
+        /* Print version */
+
+        @media print {
+            body {
+                margin-bottom: 0;
+            }
+
+            header,
+            nav,
+            article {
+                width: auto;
+            }
+            
+            #tumblr_controls,
+            .post-footer {
+                display: none;
+            }
+        }
+        
+        {block:IfCenterAlignment}
+        body > header,
+        body > article,
+        body > nav,
+        .mc-container {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        body > footer {
+            text-align: center;
+        }
+        {/block:IfCenterAlignment}
+
+        {CustomCSS}
+    </style>
+</head>
+<body class="{block:PermalinkPage}permalink-page{/block:PermalinkPage}">
+<header>
+    <h1><a href="/">{Title}</a> <div class="google-plus-one"><div class="g-plusone" data-size="small" data-href="/"></div></div></h1>
+    {block:IndexPage}
+    {block:IfShowDescription}
+    {block:Description}
+    <details>
+        <summary><span>{lang:About}</span></summary>
+        <div class="description">
+            <img src="{PortraitURL-128}" alt="" width="128" height="128">{Description}
+        </div>
+    </details>
+    {/block:Description}
+    {/block:IfShowDescription}
+    <nav>
+        <ul>
+            {block:HasPages}
+            {block:Pages}
+                <li><a href="{URL}" title="{Label}">{Label}</a></li>
+            {/block:Pages}
+            {/block:HasPages}
+            <li><a href="/random" title="{lang:Random post}">{lang:Random post}</a></li>
+            <li><a href="/archive" title="{lang:Archive}">{lang:Archive}</a></li>
+            
+        </ul>
+    </nav>
+
+    {block:IfGoogleSearchCxId}
+    <nav class="google-search">
+      <gcse:search></gcse:search>
+    </nav>
+    {/block:IfGoogleSearchCxId}
+
+    {block:IfShowBlogTags}
+    <nav class="blog-tags">
+        Blog tags:
+        <script type="text/javascript" src="https://static.tumblr.com/zpgybcc/Neelpcziw/tumblr.min.js?css=custom&amp;math=linear&amp;order=frequency&amp;minsize=100&amp;maxsize=100&amp;limit={text:Maximum number of tags}"></script>
+    </nav>
+    {/block:IfShowBlogTags}
+    {/block:IndexPage}
+</header>
+{block:Posts}
+<article class="{PostType}">
+    {block:Text}
+    {block:Title}<h1>{Title}</h1>{/block:Title}
+    {Body}
+    {/block:Text}
+
+    {block:Photo}
+    <div class="img">
+        {block:HighRes}<a href="{PhotoURL-HighRes}">{/block:HighRes}
+        <img src="{PhotoURL-500}" alt="{PhotoAlt}"/>
+        {block:HighRes}</a>{/block:HighRes}
+        {LinkOpenTag}{LinkURL}{LinkCloseTag}
+    </div>
+    {block:Caption}{Caption}{/block:Caption}
+    {/block:Photo}
+
+    {block:Quote}
+    <blockquote>{Quote}</blockquote>
+    {block:Source}
+    <p class="source">&mdash; {Source}</p>
+    {/block:Source}
+    {/block:Quote}
+
+    {block:Link}
+    <h1>{block:IfShowInfinitySymbolBeforeLinkTitle}&infin; {/block:IfShowInfinitySymbolBeforeLinkTitle}<a href="{URL}" {Target}>{Name}</a></h1>
+    {block:Description}{Description}{/block:Description}
+    {/block:Link}
+
+    {block:Chat}
+    {block:Title}<h1>{Title}</h1>{/block:Title}
+    <ul>
+        {block:Lines}
+        <li class="{Alt} user_{UserNumber}">
+            {block:Label}&mdash; <strong>{Label}</strong>{/block:Label}
+            {Line}
+        </li>
+        {/block:Lines}
+    </ul>
+    {/block:Chat}
+
+    {block:Video}
+    <div class="src">{Video-500}</div>
+    {block:Caption}{Caption}{/block:Caption}
+    {/block:Video}
+
+    {block:Audio}
+    <div class="src">{AudioPlayerBlack}</div>
+    {block:Caption}{Caption}{/block:Caption}
+    {/block:Audio}
+
+    {block:Answer}
+    <ul>
+        <li>&mdash; <strong>{Asker}:</strong> {Question}</li>
+        <li>&mdash; <strong><a href="{PostAuthorURL}">{PostAuthorName}</a>:</strong> {Answer}</li>
+    </ul>
+    {/block:Answer}
+
+    <div class="post-footer">
+      {block:Date}<a href="{Permalink}"><time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">{DayOfMonthWithZero}.{MonthNumberWithZero}.{Year}</time></a>{/block:Date}
+      {block:IfCackleId}
+      {block:IndexPage}
+      | <a href="{Permalink}#mc-container" cackle-channel="{PostID}">{lang:Comment}</a>
+      {/block:IndexPage}
+      {/block:IfCackleId}
+      {block:IndexPage}{block:NoteCount}| <a href="{Permalink}#notes">{NoteCountWithLabel}</a>{/block:NoteCount}{/block:IndexPage}
+      {block:Date}
+      | <div class="google-plus-one"><div class="g-plusone" data-size="small" data-href="{Permalink}"></div></div>
+      {/block:Date}
+      {block:HasTags}
+      <br/>{lang:Tags}:
+      <ul class="tags">
+        {block:Tags}
+        <li><a href="{TagURL}">{Tag}</a></li>
+        {/block:Tags}
+      </ul>
+      {/block:HasTags}
+
+      {block:PermalinkPage}
+      {block:PostNotes}
+      <div class="notes-block">
+          <a name="notes"></a>{NoteCountWithLabel}:
+          {PostNotes}
+      </div>
+      {/block:PostNotes}
+
+      {block:IfCackleId}
+      <div id="mc-container" class="mc-container"></div>
+      <script type="text/javascript">
+          var mcSite = '{text:Cackle ID}';
+          var mcChannel = '{PostID}';
+          (function() {
+              var mc = document.createElement('script');
+              mc.type = 'text/javascript';
+              mc.async = true;
+              mc.src = '//cackle.me/mc.widget-min.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(mc);
+          })();
+      </script>
+      <a href="https://cackle.me" id="mc-link">Сackle</a>
+      {/block:IfCackleId}
+      {/block:PermalinkPage}
+    </div>
+</article>
+{/block:Posts}
+
+{block:Pagination}
+<nav>
+    <ul>
+        {block:PreviousPage}<li>&larr; <a href="{PreviousPage}" title="{lang:Newer posts}">{lang:Newer posts}</a></li>{/block:PreviousPage}
+        {block:PreviousPage}{block:NextPage}<li>| <a href="/archive" title="{lang:Archive}">{lang:Archive}</a> |</li>{/block:NextPage}{/block:PreviousPage}
+        {block:NextPage}<li><a href="{NextPage}" title="{lang:Older posts}">{lang:Older posts}</a> &rarr;</li>{/block:NextPage}
+    </ul>
+</nav>
+{/block:Pagination}
+<footer>
+
+</footer>
+
+<script type="text/javascript">
+  window.___gcfg = {lang: '{text:Language Code}'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+</body>
+{block:IfCackleId}
+{block:IndexPage}
+<script type="text/javascript">
+  var mcSite = '{text:Cackle ID}';
+  (function () {
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = 'https://cackle.me/mc.count-min.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(mc);
+  })();
+</script>
+{/block:IndexPage}
+{/block:IfCackleId}
+</html>
